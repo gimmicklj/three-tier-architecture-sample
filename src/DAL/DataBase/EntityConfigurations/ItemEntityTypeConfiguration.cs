@@ -13,6 +13,6 @@ internal sealed class ItemEntityTypeConfiguration : IEntityTypeConfiguration<Ite
         builder.Property(c => c.Id).ValueGeneratedOnAdd();
         builder.Property(c => c.Name).HasMaxLength(50).IsRequired();
         builder.Property(c => c.Description).HasMaxLength(200).IsRequired();
-        //builder.HasQueryFilter(i => !i.IsDeleted);
+        builder.HasQueryFilter(i => !i.IsDeleted);
     }
 }
