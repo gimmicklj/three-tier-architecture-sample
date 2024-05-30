@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApi.Common.Result;
 
-namespace WebApi.Extensions.ServiceCollection;
+namespace WebApi.Common.ServiceCollection;
 
 public static class ApiBehaviorServiceCollectionExtension
 {
