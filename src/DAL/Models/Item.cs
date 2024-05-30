@@ -2,7 +2,7 @@
 
 namespace DAL.Models;
 
-public class Item: Entity<int>
+public class Item: Entity<Guid>
 {  
     [Required]
     public string? Name { get; set; }

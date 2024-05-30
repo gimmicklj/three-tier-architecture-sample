@@ -1,8 +1,8 @@
-﻿namespace BAL.Dtos.Item.Response;
+﻿namespace BLL.Dtos.Item.Response;
 
 public class ItemDto
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     public string? Name { get; set; }
 

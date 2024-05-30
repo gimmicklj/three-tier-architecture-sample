@@ -1,8 +1,8 @@
-﻿using BAL.Dtos.Item.Response;
-using BAL.DTOs.Item.Request;
+﻿using BLL.Dtos.Item.Request;
+using BLL.Dtos.Item.Response;
 using DAL.Models;
 
-namespace BAL.Mapper;
+namespace BLL.Mapper;
 
 public static  class ItemMapper
 {
@@ -32,12 +32,10 @@ public static  class ItemMapper
         };
     }
 
-    public static Item ToItem(this ItemUpdateDto dto)
+    public static Item ToItem(this ItemUpdateDto dto, Item entity)
     {
-        return new Item
-        {
-            Name = dto.Name,
-            Description = dto.Description,
-        };
+        entity.Name = dto.Name;
+        entity.Description = dto.Description;
+        return entity;
     }
 }

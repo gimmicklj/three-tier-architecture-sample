@@ -1,50 +1,49 @@
-﻿using BAL.DTOs.Item.Request;
-using BAL.Dtos.Item.Response;
-using BAL.Mapper;
+﻿using BLL.Dtos.Item.Request;
+using BLL.Dtos.Item.Response;
+using BLL.Interface;
+using BLL.Mapper;
 using DAL.Models;
 using DAL.UnitOfWork;
 
-namespace BAL.Services;
+namespace BLL.Services;
 
 public class ItemService(IUnitOfWork unitOfWork) : IItemService
 {
     public async Task AddItem(ItemCreateDto dto)
     {
-        var repo = unitOfWork.GetRepository<Item,int>();
+        var repo = unitOfWork.GetRepository<Item,Guid>();
         var entity = dto.ToItem();
         repo.Add(entity);
         await unitOfWork.SaveChangesAsync();
     }
 
-    public async Task DeleteItem(int id)
+    public async Task DeleteItem(Guid id)
     {
-        var repo = unitOfWork.GetRepository<Item,int>();
+        var repo = unitOfWork.GetRepository<Item,Guid>();
         var entity = repo.GetById(id);
         repo.Delete(entity);
         await unitOfWork.SaveChangesAsync();
     }
 
-    public async Task UpdateItem(int id, ItemUpdateDto dto)
+    public async Task UpdateItem(Guid id, ItemUpdateDto dto)
     {
-        var repo = unitOfWork.GetRepository<Item, int>();
-        var entity = repo.GetById(id);
-        entity.Name = dto.Name;
-        entity.Description = dto.Description;
+        var repo = unitOfWork.GetRepository<Item, Guid>();
+        var entity = dto.ToItem(repo.GetById(id));
         repo.Update(entity);
         await unitOfWork.SaveChangesAsync();
     }
     
     public List<ItemDto>  GetAllItems()
     {
-        var repo = unitOfWork.GetRepository<Item, int>();
+        var repo = unitOfWork.GetRepository<Item, Guid>();
         var entities = repo.GetAll();
         var dtos = entities.ToItemDtos().ToList();
         return dtos;
     }
 
-    public ItemDto GetItemById(int id)
+    public ItemDto GetItemById(Guid id)
     {
-        var repo = unitOfWork.GetRepository<Item, int>();
+        var repo = unitOfWork.GetRepository<Item, Guid>();
         var entity = repo.GetById(id);
         var dto = entity.ToItemDto();
         return dto;

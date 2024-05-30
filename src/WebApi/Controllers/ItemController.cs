@@ -1,8 +1,8 @@
-﻿using BAL.DTOs.Item.Request;
-using BAL.Dtos.Item.Response;
-using BAL.Services;
+﻿using BLL.Dtos.Item.Request;
+using BLL.Dtos.Item.Response;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Common.Result;
+using BLL.Interface;
 
 namespace WebApi.Controllers;
 
@@ -19,7 +19,7 @@ public class ItemController(ILogger<ItemController> logger, IItemService itemSer
     }
     
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(Guid id)
     {
         await  itemService.DeleteItem(id);
         logger.LogInformation("delete item item success");
@@ -27,7 +27,7 @@ public class ItemController(ILogger<ItemController> logger, IItemService itemSer
     }
     
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update( int id, [FromBody] ItemUpdateDto dto)
+    public async Task<IActionResult> Update(Guid id, [FromBody] ItemUpdateDto dto)
     {
         await itemService.UpdateItem(id,dto);
         logger.LogInformation("update test item success");
@@ -36,7 +36,7 @@ public class ItemController(ILogger<ItemController> logger, IItemService itemSer
     }
     
     [HttpGet("{id}")]
-    public IActionResult Get(int id)
+    public IActionResult Get(Guid id)
     {
         var item = itemService.GetItemById(id);
         logger.LogInformation("get item item success");

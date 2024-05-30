@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BAL.DTOs.Item.Request;
+namespace BLL.Dtos.Item.Request;
 
 public class ItemUpdateDto
 {
