@@ -54,5 +54,4 @@ project.assets.json
 *.dbg
 *.log
 *.binlog
-*.json
 *.vsplog
