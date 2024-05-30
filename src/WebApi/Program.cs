@@ -4,13 +4,14 @@ using DAL.Repositories;
 using DAL.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using WebApi.Extensions.ServiceCollection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwagger();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(options =>
     {
