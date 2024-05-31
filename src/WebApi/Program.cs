@@ -5,8 +5,7 @@ using DAL.Repositories;
 using DAL.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using WebApi.Common.ServiceCollection;
+using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
