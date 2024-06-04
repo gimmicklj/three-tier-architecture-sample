@@ -1,6 +1,6 @@
 # Three Tier Architecture in ASP.NET Core 8 Web API
 
-The three-tier architecture comprises the Presentation Layer, Business Logic Layer (BLL), and Data Access Layer (DAL). In the context of an ASP.NET Core 8 Web API, this structure is instrumental in creating a scalable, maintainable, and efficient web application. The following sections delve into each layer, outlining their roles, responsibilities, and functions within the architecture.
+The three-tier architecture comprises the Presentation Layer(UI), Business Logic Layer (BLL), and Data Access Layer (DAL). In the context of an ASP.NET Core 8 Web API, this structure is instrumental in creating a scalable, maintainable, and efficient web application. The following sections delve into each layer, outlining their roles, responsibilities, and functions within the architecture.
 
 ## Project Structure
 
