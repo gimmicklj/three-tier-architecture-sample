@@ -7,7 +7,6 @@ public static class DateTimeHelper
         DateTime dateTimeStart = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
         var lTime = long.Parse(timeStamp + "0000000");
         var toNow = new TimeSpan(lTime);
-             
         return dateTimeStart.Add(toNow);
     }
     

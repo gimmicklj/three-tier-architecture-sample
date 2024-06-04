@@ -8,7 +8,7 @@ namespace WebApi;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddUI(this IServiceCollection services)
+    public static IServiceCollection AddUserInterface(this IServiceCollection services)
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();

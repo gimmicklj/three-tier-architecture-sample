@@ -4,9 +4,9 @@ using WebApi;
 using WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddUI()
-    .AddDAL(builder.Configuration)
-    .AddBLL();
+builder.Services.AddUserInterface()
+    .AddDataAccess(builder.Configuration)
+    .AddBusinessLogic();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
