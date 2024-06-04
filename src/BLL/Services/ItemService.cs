@@ -2,8 +2,8 @@
 using BLL.Dtos.Item.Response;
 using BLL.Interface;
 using BLL.Mapper;
+using DAL.Interface;
 using DAL.Models;
-using DAL.UnitOfWork;
 
 namespace BLL.Services;
 

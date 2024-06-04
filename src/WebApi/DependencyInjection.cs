@@ -1,13 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using WebApi.Common.Result;
+using WebApi.Middlewares;
 
 namespace WebApi;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApiBehavior(this IServiceCollection services)
+    public static IServiceCollection AddUI(this IServiceCollection services)
     {
+        services.AddControllers();
+        services.AddEndpointsApiExplorer();
+        services.AddTransient<GloblalExceptionHandlingMiddleware>();
+        services.AddAuthorization();
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
+            options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
+        })
+            .AddCookie(IdentityConstants.ApplicationScheme)
+            .AddBearerToken(IdentityConstants.BearerScheme);
+
         services.Configure<ApiBehaviorOptions>(options =>
         {
             options.InvalidModelStateResponseFactory = actionContext =>
@@ -17,15 +31,10 @@ public static class DependencyInjection
                     .Select(e => e.Value?.Errors.First().ErrorMessage)
                     .ToList();
                 var str = string.Join(", ", errors);
-                var result = Result<string>.Failure(str);
+                var result = ApiResult<string>.Failure(str);
                 return new BadRequestObjectResult(result);
             };
         });
-        return services;
-    }
-    
-    public static IServiceCollection AddSwagger(this IServiceCollection services)
-    {
         services.AddSwaggerGen(c =>
             c.SwaggerDoc("v1", new OpenApiInfo
             {

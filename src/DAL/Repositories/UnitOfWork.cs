@@ -1,9 +1,9 @@
-﻿using DAL.Repositories;
-using DAL.DataBase;
+﻿using DAL.DataBase;
+using DAL.Interface;
 
-namespace DAL.UnitOfWork
+namespace DAL.Repositories
 {
-    public class UnitOfWork (ApplicationDbContext dbContext) : IUnitOfWork, IDisposable
+    public class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork, IDisposable
     {
         private bool _completed;
         private readonly ApplicationDbContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
@@ -57,18 +57,21 @@ namespace DAL.UnitOfWork
         {
             return await _dbContext.SaveChangesAsync(cancellationToken);
         }
-        
+
         public void Dispose()
         {
             if (_completed)
             {
-                try {
+                try
+                {
                     _dbContext.Database.RollbackTransaction();
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     throw new InvalidOperationException("An error occurred while rolling back the transaction.", ex);
                 }
-                finally {
+                finally
+                {
                     _completed = false;
                 }
             }

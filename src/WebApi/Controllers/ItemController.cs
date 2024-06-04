@@ -15,7 +15,7 @@ public class ItemController(ILogger<ItemController> logger, IItemService itemSer
     {
         await itemService.AddItem(dto);
         logger.LogInformation("add item item success");
-        return Ok(Result<string>.Ok("add item item success"));
+        return Ok(ApiResult<string>.Ok("add item item success"));
     }
     
     [HttpDelete("{id}")]
@@ -23,7 +23,7 @@ public class ItemController(ILogger<ItemController> logger, IItemService itemSer
     {
         await  itemService.DeleteItem(id);
         logger.LogInformation("delete item item success");
-        return Ok(Result<string>.Ok("delete item item success"));
+        return Ok(ApiResult<string>.Ok("delete item item success"));
     }
     
     [HttpPut("{id}")]
@@ -31,7 +31,7 @@ public class ItemController(ILogger<ItemController> logger, IItemService itemSer
     {
         await itemService.UpdateItem(id,dto);
         logger.LogInformation("update test item success");
-        return Ok(Result<string>.Ok("update test item success"));
+        return Ok(ApiResult<string>.Ok("update test item success"));
 
     }
     
@@ -40,7 +40,7 @@ public class ItemController(ILogger<ItemController> logger, IItemService itemSer
     {
         var item = itemService.GetItemById(id);
         logger.LogInformation("get item item success");
-        return Ok(Result<ItemDto>.Ok(item));
+        return Ok(ApiResult<ItemDto>.Ok(item));
 
     }
     
@@ -49,6 +49,6 @@ public class ItemController(ILogger<ItemController> logger, IItemService itemSer
     {
         var items = itemService.GetAllItems();
         logger.LogInformation("list test item success");
-        return Ok(Result<List<ItemDto>>.Ok(items));
+        return Ok(ApiResult<List<ItemDto>>.Ok(items));
     }
 }

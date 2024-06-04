@@ -1,4 +1,4 @@
-﻿namespace DAL.Repositories
+﻿namespace DAL.Interface
 {
     public interface IRepository<TEntity, in TKey>
         where TEntity : class
